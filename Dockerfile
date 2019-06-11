@@ -1,5 +1,6 @@
 FROM elixir:1.8.2
 
+ARG ENV
 ENV APP_ROOT=/messagach
 ENV PORT=4000
 ENV NODE_VERSION=v10.16.0
@@ -9,7 +10,7 @@ ENV PATH=$PATH:/node_modules/.bin
 
 WORKDIR ${APP_ROOT}
 
-RUN apt-get update -y && apt-get install -y inotify-tools
+RUN apt-get update -y && apt-get install -y apt-utils inotify-tools
 
 RUN wget -q https://nodejs.org/dist/$NODE_VERSION/$NODE_DIST_FILENAME
 RUN tar -C /usr/local --strip-components 1 -xJvf $NODE_DIST_FILENAME > /dev/null
@@ -20,11 +21,16 @@ RUN mix local.hex --force && mix local.rebar --force
 
 COPY mix.exs mix.lock ./
 
-RUN mix deps.get
+RUN if [ "${ENV}" = "dev" ] ; then mix deps.get ; else mix deps.get --only prod ; fi
+
+COPY assets/package.json assets/yarn.lock ./assets/
+RUN cd assets && yarn install && cd ..
 
 COPY . .
 
+RUN cd assets && yarn deploy && cd ..
 RUN mix compile
+RUN mix phx.digest
 
 EXPOSE ${PORT}
 

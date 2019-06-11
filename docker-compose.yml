@@ -1,7 +1,10 @@
 version: '3'
 services:
   web:
-    build: .
+    build:
+      context: .
+      args:
+        ENV: dev
     command: mix phx.server
     ports:
       - '4000:4000'
