@@ -1,12 +1,15 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Root from './Root';
+import AuthenticationForm from './AuthenticationForm';
 import routes from '../utils/routes';
 
 const Routes = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path={routes.root} component={Root} />
+      <Route path={routes.signIn} component={AuthenticationForm} />
+      {/* <Route exact path={routes.signUp} /> */}
     </Switch>
   </BrowserRouter>
 );
