@@ -7,6 +7,7 @@ ENV NODE_VERSION=v10.16.0
 ENV NODE_DIST_FILENAME=node-$NODE_VERSION-linux-x64.tar.xz
 ENV NODE_PATH=${APP_ROOT}/client/node_modules
 ENV PATH=$PATH:/node_modules/.bin
+ENV DEBIAN_FRONTEND=noninteractive
 
 WORKDIR ${APP_ROOT}
 
