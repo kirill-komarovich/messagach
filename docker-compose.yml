@@ -10,9 +10,17 @@ services:
       - '4000:4000'
     depends_on:
       - db
+      - redis
     volumes:
       - .:/messagach/
       - /messagach/_build/db
+    env_file:
+      - .env.development
+  redis:
+    image: redis:5.0.5
+    command: ['redis-server', '--appendonly', 'yes']
+    volumes:
+      - './_build/db/data/redis:/data'
   db:
     image: postgres:11.3
     volumes:

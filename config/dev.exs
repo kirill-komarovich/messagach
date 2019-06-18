@@ -5,7 +5,7 @@ config :messagach, Messagach.Repo,
   username: "postgres",
   password: "postgres",
   database: "messagach_dev",
-  hostname: "db",
+  hostname: System.get_env("DB_HOST"),
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
@@ -74,3 +74,5 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :exredis, host: System.get_env("REDIS_HOST")

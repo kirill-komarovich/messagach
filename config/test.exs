@@ -5,7 +5,7 @@ config :messagach, Messagach.Repo,
   username: "postgres",
   password: "postgres",
   database: "messagach_test",
-  hostname: "db",
+  hostname: System.get_env("DB_HOST"),
   pool: Ecto.Adapters.SQL.Sandbox
 
 # We don't run a server during test. If one is required,
@@ -16,3 +16,5 @@ config :messagach, MessagachWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :exredis, host: System.get_env("REDIS_HOST")
