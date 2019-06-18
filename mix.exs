@@ -42,7 +42,8 @@ defmodule Messagach.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:credo, "~> 1.1", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -56,7 +57,9 @@ defmodule Messagach.MixProject do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate", "test"]
+      lint: ["credo"],
+      test: ["ecto.create --quiet", "ecto.migrate", "test"],
+      travis: ["credo", "yarn.lint", "test"]
     ]
   end
 end
