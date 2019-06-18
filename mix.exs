@@ -24,6 +24,12 @@ defmodule Messagach.MixProject do
     ]
   end
 
+  def applications do
+    [
+      :redbird
+    ]
+  end
+
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
@@ -43,7 +49,8 @@ defmodule Messagach.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:credo, "~> 1.1", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.1", only: [:dev, :test], runtime: false},
+      {:redbird, "~> 0.4.0"}
     ]
   end
 

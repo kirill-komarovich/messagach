@@ -6,6 +6,7 @@ services:
 env:
   BUILD_IMAGE_NAME: $PROJECT_NAME:$TRAVIS_JOB_ID-sha-$TRAVIS_PULL_REQUEST_SHA
   POSTGRES_VERSION: '11.3'
+  REDIS_VERSION: '5.0.5'
 
 before_install:
   - sudo apt-get update
@@ -16,8 +17,10 @@ before_install:
 
 
 install:
-  - docker run -d --name postgres -e "POSTGRES_USER=postgres" -e "POSTGRES_PASSWORD=postgres" -e "POSTGRES_DB=messagach_test" postgres:$POSTGRES_VERSION
+  - docker run -d --name postgres postgres:$POSTGRES_VERSION
+  - docker run -d --name redis redis:$REDIS_VERSION
   - docker build --rm --build-arg ENV=dev -t $BUILD_IMAGE_NAME .
 
 script:
-  - docker run --rm -e MIX_ENV=test --link postgres:db $BUILD_IMAGE_NAME /bin/sh -c "mix travis"
+  - docker run --rm --env-file .env.test --link redis:redis
+               --link postgres:db $BUILD_IMAGE_NAME /bin/sh -c "mix travis"
