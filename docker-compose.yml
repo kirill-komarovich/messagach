@@ -5,7 +5,7 @@ services:
       context: .
       args:
         ENV: dev
-    command: mix phx.server
+    command: iex -S mix phx.server
     ports:
       - '4000:4000'
     depends_on:
@@ -16,6 +16,11 @@ services:
       - /messagach/_build/db
     env_file:
       - .env.development
+    volumes:
+      - .:/messagach/
+      - /messagach/_build/db
+    stdin_open: true
+    tty: true
   redis:
     image: redis:5.0.5
     command: ['redis-server', '--appendonly', 'yes']

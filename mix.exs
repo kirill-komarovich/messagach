@@ -10,7 +10,10 @@ defmodule Messagach.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [
+        tool: Coverex.Task
+      ]
     ]
   end
 
@@ -50,7 +53,9 @@ defmodule Messagach.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:credo, "~> 1.1", only: [:dev, :test], runtime: false},
-      {:redbird, "~> 0.4.0"}
+      {:coverex, "~> 1.4.10", only: :test},
+      {:redbird, "~> 0.4.0"},
+      {:ex_machina, "~> 2.3", only: :test}
     ]
   end
 
