@@ -55,7 +55,8 @@ defmodule Messagach.MixProject do
       {:credo, "~> 1.1", only: [:dev, :test], runtime: false},
       {:coverex, "~> 1.4.10", only: :test},
       {:redbird, "~> 0.4.0"},
-      {:ex_machina, "~> 2.3", only: :test}
+      {:ex_machina, "~> 2.3", only: :test},
+      {:bcrypt_elixir, "~> 2.0"}
     ]
   end
 

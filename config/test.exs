@@ -18,3 +18,5 @@ config :messagach, MessagachWeb.Endpoint,
 config :logger, level: :warn
 
 config :exredis, host: System.get_env("REDIS_HOST")
+
+config :bcrypt_elixir, :log_rounds, 2
