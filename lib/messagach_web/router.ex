@@ -13,14 +13,26 @@ defmodule MessagachWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :authentication do
+    plug Messagach.Auth.Pipeline
+  end
+
+  pipeline :ensure_authenticated do
+    plug Guardian.Plug.EnsureAuthenticated
+    plug Guardian.Plug.LoadResource
+  end
+
+  pipeline :ensure_not_authenticated do
+    plug Guardian.Plug.EnsureNotAuthenticated
+  end
+
+  scope "/api", MessagachWeb do
+    pipe_through [:api, :authentication]
+  end
+
   scope "/", MessagachWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/*path", PageController, :index
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", MessagachWeb do
-  #   pipe_through :api
-  # end
 end
