@@ -1,6 +1,6 @@
 defmodule Messagach.UsersTest do
   use Messagach.DataCase
-  import Messagach.Factory
+  import Messagach.UserFactory
 
   alias Messagach.Users
 
@@ -12,12 +12,12 @@ defmodule Messagach.UsersTest do
     @invalid_attrs %{email: nil, password: nil}
 
     test "list_users/0 returns all users" do
-      user = insert(:user) |> without_password
+      user = without_password(insert(:user))
       assert Users.list_users() == [user]
     end
 
     test "get_user!/1 returns the user with given id" do
-      user = insert(:user) |> without_password
+      user = without_password(insert(:user))
       assert Users.get_user!(user.id) == user
     end
 
@@ -48,7 +48,7 @@ defmodule Messagach.UsersTest do
     end
 
     test "update_user/2 with invalid data returns error changeset" do
-      user = insert(:user) |> without_password
+      user = without_password(insert(:user))
       assert {:error, %Ecto.Changeset{}} = Users.update_user(user, @invalid_attrs)
       assert user == Users.get_user!(user.id)
     end
@@ -65,18 +65,22 @@ defmodule Messagach.UsersTest do
     end
 
     test "verify_user/1 with valid email and password returns user" do
-      user = insert(:user, @valid_attrs) |> without_password
+      user = without_password(insert(:user, @valid_attrs))
       assert {:ok, user} == Users.verify_user(string_params_for(:user, @valid_attrs))
     end
 
     test "verify_user/1 with invalid email returns 'invalid user-identifier' error" do
       insert(:user, @valid_attrs)
-      assert {:error, "invalid user-identifier"} == Users.verify_user(string_params_for(:user, %{@valid_attrs | email: ""}))
+
+      assert {:error, "invalid user-identifier"} ==
+               Users.verify_user(string_params_for(:user, %{@valid_attrs | email: ""}))
     end
 
     test "verify_user/1 with invalid password returns 'invalid password' error" do
       insert(:user, @valid_attrs)
-      assert {:error, "invalid password"} == Users.verify_user(string_params_for(:user, %{@valid_attrs | password: ""}))
+
+      assert {:error, "invalid password"} ==
+               Users.verify_user(string_params_for(:user, %{@valid_attrs | password: ""}))
     end
   end
 end

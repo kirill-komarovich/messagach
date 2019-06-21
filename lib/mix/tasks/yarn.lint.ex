@@ -6,6 +6,6 @@ defmodule Mix.Tasks.Yarn.Lint do
   use Mix.Task
 
   def run(_) do
-    System.cmd("yarn", ["lint"], [cd: "assets", into: IO.stream(:stdio, :line)])
+    System.cmd("yarn", ["lint"], cd: "assets", into: IO.stream(:stdio, :line))
   end
 end

@@ -53,6 +53,7 @@ defmodule Messagach.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:credo, "~> 1.1", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
       {:coverex, "~> 1.4.10", only: :test},
       {:redbird, "~> 0.4.0"},
       {:ex_machina, "~> 2.3", only: :test},

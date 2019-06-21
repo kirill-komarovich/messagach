@@ -1,5 +1,4 @@
 defmodule Messagach.Users.User do
-
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -37,12 +36,12 @@ defmodule Messagach.Users.User do
     |> validate_length(:password, min: 6, max: 100)
     |> hash_password
   end
+
   defp validate_password(%Ecto.Changeset{} = changeset), do: changeset
 
-
   defp hash_password(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do
-    changeset
-    |> change(Bcrypt.add_hash(password, hash_key: :encrypted_password))
+    change(changeset, Bcrypt.add_hash(password, hash_key: :encrypted_password))
   end
+
   defp hash_password(%Ecto.Changeset{} = changeset), do: changeset
 end

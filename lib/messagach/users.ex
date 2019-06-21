@@ -1,12 +1,9 @@
 defmodule Messagach.Users do
-
   import Ecto.Query, warn: false
   alias Messagach.Repo
   alias Messagach.Users.User
 
-  def list_users do
-    Repo.all(User)
-  end
+  def list_users, do: Repo.all(User)
 
   def get_user!(id), do: Repo.get!(User, id)
 
@@ -24,13 +21,9 @@ defmodule Messagach.Users do
     |> Repo.update()
   end
 
-  def delete_user(%User{} = user) do
-    Repo.delete(user)
-  end
+  def delete_user(%User{} = user), do: Repo.delete(user)
 
-  def change_user(%User{} = user) do
-    User.changeset(user, %{})
-  end
+  def change_user(%User{} = user), do: User.changeset(user, %{})
 
   def verify_user(%{"email" => email, "password" => password}) do
     get_user_by(email: email)
