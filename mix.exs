@@ -13,6 +13,9 @@ defmodule Messagach.MixProject do
       deps: deps(),
       test_coverage: [
         tool: Coverex.Task
+      ],
+      dialyzer: [
+        plt_add_apps: [:mix]
       ]
     ]
   end
@@ -57,7 +60,8 @@ defmodule Messagach.MixProject do
       {:coverex, "~> 1.4.10", only: :test},
       {:redbird, "~> 0.4.0"},
       {:ex_machina, "~> 2.3", only: :test},
-      {:bcrypt_elixir, "~> 2.0"}
+      {:bcrypt_elixir, "~> 2.0"},
+      {:guardian, "~> 1.2"}
     ]
   end
 

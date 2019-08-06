@@ -30,3 +30,7 @@ config :redbird, key_namespace: "messagach_"
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
+
+config :messagach, Messagach.Auth.Guardian,
+  issuer: "messagach",
+  secret_key: System.get_env("GUARDIAN_SECRET")

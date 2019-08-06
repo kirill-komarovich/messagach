@@ -93,3 +93,18 @@ msgstr ""
 
 msgid "must be equal to %{number}"
 msgstr ""
+
+msgid "unauthorized"
+msgstr ""
+
+msgid "no_resource_found"
+msgstr ""
+
+msgid "already_authenticated"
+msgstr ""
+
+msgid "invalid_token"
+msgstr ""
+
+msgid "invalid_credentials"
+msgstr ""
