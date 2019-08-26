@@ -1,4 +1,4 @@
-FROM elixir:1.8.2
+FROM elixir:1.9.1
 
 ARG ENV
 ENV APP_ROOT=/messagach
