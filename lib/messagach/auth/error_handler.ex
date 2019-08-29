@@ -10,7 +10,7 @@ defmodule Messagach.Auth.ErrorHandler do
     conn
     |> put_resp_content_type("application/json")
     |> put_status(:unauthorized)
-    |> put_view(MessagachWeb.SessionView)
-    |> render("error.json", %{type: type})
+    |> put_view(MessagachWeb.ErrorView)
+    |> render("error.json", %{authentication: type})
   end
 end

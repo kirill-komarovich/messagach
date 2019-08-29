@@ -2,8 +2,14 @@ defmodule MessagachWeb.SessionView do
   import MessagachWeb.Gettext
 
   use MessagachWeb, :view
+  alias MessagachWeb.SessionView
 
-  def render("error.json", %{type: type}) do
-    %{errors: Gettext.dgettext(MessagachWeb.Gettext, "errors", to_string(type))}
+  def render("show.json", %{user: user}) do
+    %{data: render_one(user, SessionView, "user.json", as: :user)}
+  end
+
+  def render("user.json", %{user: user}) do
+    %{id: user.id,
+      email: user.email}
   end
 end

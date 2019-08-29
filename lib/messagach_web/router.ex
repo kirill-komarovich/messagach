@@ -28,6 +28,23 @@ defmodule MessagachWeb.Router do
 
   scope "/api", MessagachWeb do
     pipe_through [:api, :authentication]
+
+    scope "/v1" do
+      scope "/users" do
+        scope "/" do
+          pipe_through :ensure_not_authenticated
+
+          post "/sign_in", SessionController, :create
+        end
+
+        scope "/" do
+          pipe_through :ensure_authenticated
+
+          get "/info", SessionController, :show
+          delete "/sign_out", SessionController, :destroy
+        end
+      end
+    end
   end
 
   scope "/", MessagachWeb do
