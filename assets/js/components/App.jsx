@@ -1,7 +1,8 @@
 import React from 'react';
+import Routes from './Routes';
 
 const App = () => (
-  <h1>Hello Messagach</h1>
+  <Routes />
 );
 
 export default App;

@@ -1,26 +1,33 @@
 const path = require('path');
 const glob = require('glob');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (env, options) => ({
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({ cache: true, parallel: true, sourceMap: false }),
+      new TerserPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: false,
+        terserOptions: {
+          compress: {
+            unused: false,
+          },
+        },
+      }),
       new OptimizeCSSAssetsPlugin({})
     ]
   },
-  entry: {
-    './js/app.js': ['./js/app.js'].concat(glob.sync('./vendor/**/*.js'))
-  },
+  entry: './js/app.js',
   output: {
     filename: 'app.js',
     path: path.resolve(__dirname, '../priv/static/js')
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.css'],
+    extensions: ['.js', '.jsx', '.css', '.scss', 'woff', 'woff2'],
   },
   module: {
     rules: [
@@ -34,11 +41,19 @@ module.exports = (env, options) => ({
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader']
+      },
+      {
+        test: /\.(scss|sass)$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: ['file-loader']
       }
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: '../css/app.css' }),
+    new MiniCssExtractPlugin({ filename: '../css/app.scss' }),
     new CopyWebpackPlugin([{ from: 'static/', to: '../' }])
   ]
 });
