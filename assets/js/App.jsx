@@ -1,8 +1,11 @@
 import React from 'react';
+import { Container } from '@material-ui/core';
 import Routes from './Routes';
 
 const App = () => (
-  <Routes />
+  <Container>
+    <Routes />
+  </Container>
 );
 
 export default App;
