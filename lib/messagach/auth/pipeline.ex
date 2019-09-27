@@ -6,6 +6,4 @@ defmodule Messagach.Auth.Pipeline do
 
   plug :fetch_session
   plug Guardian.Plug.VerifySession, claims: %{"typ" => "access"}
-  plug Guardian.Plug.VerifyHeader, claims: %{typ: "access", realm: "Bearer"}
-  plug Guardian.Plug.LoadResource, allow_blank: true
 end
