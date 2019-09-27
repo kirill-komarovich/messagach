@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TextField, Grid } from '@material-ui/core';
+import I18n from "i18next";
+import { I18N_FORMAT_TYPES } from '../../constants';
 
-const Fields = ({ email, password }) => {
-  const onEmailChange = React.useCallback(({ target: { value } }) => {
-    email.onChange(value)
-  }, [email]);
-  const onPasswordChange = React.useCallback(({ target: { value } }) => {
-    password.onChange(value)
-  }, [password]);
+const Fields = (props) => {
+  const { email: { value: email }, password: { value: password } }= props;
+
+  const onChange = React.useCallback(({ target: { value, name } }) => {
+    props[name].onChange(value)
+  }, [props]);
 
   return (
     <Grid
@@ -21,27 +22,27 @@ const Fields = ({ email, password }) => {
         <TextField
           required
           fullWidth
-          label="Email"
+          label={ I18n.format(I18n.t('attributes.email'), I18N_FORMAT_TYPES.capitalize) }
           type="email"
           name="email"
           autoComplete="email"
           margin="normal"
           variant="outlined"
-          value={email.value}
-          onChange={onEmailChange}
+          value={email}
+          onChange={onChange}
         />
       </Grid>
       <Grid item xs={8}>
         <TextField
           required
           fullWidth
-          label="Password"
+          label={ I18n.format(I18n.t('attributes.password'), I18N_FORMAT_TYPES.capitalize) }
           type="password"
           autoComplete="current-password"
           margin="normal"
           variant="outlined"
-          value={password.value}
-          onChange={onPasswordChange}
+          value={password}
+          onChange={onChange}
         />
       </Grid>
     </Grid>

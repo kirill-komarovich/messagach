@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 import AuthenticationForm from '../components/AuthenticationForm/AuthenticationForm';
 
-const Authentication = () => (
+const SignIn = () => (
   <Grid
     container
     direction="row"
@@ -15,4 +15,4 @@ const Authentication = () => (
   </Grid>
 );
 
-export default Authentication;
+export default SignIn;

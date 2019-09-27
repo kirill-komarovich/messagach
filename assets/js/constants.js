@@ -12,3 +12,7 @@ export const HTTP_HEADERS = Object.freeze({
     },
   },
 });
+
+export const I18N_FORMAT_TYPES = Object.freeze({
+  capitalize: 'capitalize',
+});
