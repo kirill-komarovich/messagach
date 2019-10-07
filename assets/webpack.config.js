@@ -1,5 +1,4 @@
 const path = require('path');
-const glob = require('glob');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -21,22 +20,26 @@ module.exports = (env, options) => ({
       new OptimizeCSSAssetsPlugin({})
     ]
   },
-  entry: './js/app.js',
+  entry: './js/app.tsx',
   output: {
     filename: 'app.js',
     path: path.resolve(__dirname, '../priv/static/js')
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.css', '.scss', 'woff', 'woff2'],
+    extensions: ['.ts', '.tsx', '.js', '.json', '.css', '.scss', '.woff', '.woff2']
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
+        use: ['ts-loader']
+      },
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ['source-map-loader']
       },
       {
         test: /\.css$/,

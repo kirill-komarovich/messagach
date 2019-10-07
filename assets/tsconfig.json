@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "strictNullChecks": true,
+        "esModuleInterop": true,
+        "module": "commonjs",
+        "target": "es5",
+        "lib": ["es6", "dom"],
+        "jsx": "react",
+        "moduleResolution": "node",
+        "baseUrl": "./js"
+    },
+    "exclude": [
+        "./node_modules"
+    ]
+}
