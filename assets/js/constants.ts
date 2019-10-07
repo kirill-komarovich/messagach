@@ -1,7 +1,7 @@
 export const HTTP_METHODS = Object.freeze({
+  delete: 'DELETE',
   get: 'GET',
   post: 'POST',
-  delete: 'DELETE',
   put: 'PUT',
 });
 

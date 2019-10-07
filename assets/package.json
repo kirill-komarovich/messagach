@@ -4,27 +4,28 @@
   "scripts": {
     "deploy": "webpack --mode production",
     "watch": "webpack --mode development --watch",
-    "lint": "eslint js --ext .js,.jsx"
+    "lint:ts": "tslint --project ./",
+    "lint:es": "eslint js --ext .ts,.tsx,.js",
+    "lint": "yarn lint:es && yarn lint:ts"
   },
   "dependencies": {
     "@material-ui/core": "^4.3.3",
     "@material-ui/icons": "^4.2.1",
-    "core-js": "3",
-    "history": "^4.9.0",
     "i18next": "^17.0.16",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
-    "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.0",
-    "babel-plugin-import": "^1.12.1",
+    "@types/material-ui": "^0.21.7",
+    "@types/phoenix": "^1.4.3",
+    "@types/react": "^16.9.5",
+    "@types/react-dom": "^16.9.1",
+    "@types/react-router-dom": "^5.1.0",
+    "@typescript-eslint/eslint-plugin": "^2.3.2",
+    "@typescript-eslint/parser": "^2.3.2",
     "copy-webpack-plugin": "^4.5.0",
     "css-loader": "^2.1.1",
     "eslint": "^5.16.0",
@@ -36,7 +37,13 @@
     "node-sass": "^4.12.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "sass-loader": "^8.0.0",
+    "source-map-loader": "^0.2.4",
     "terser-webpack-plugin": "^1.4.1",
+    "ts-loader": "^6.2.0",
+    "tslint": "^5.20.0",
+    "tslint-react": "^4.1.0",
+    "tslint-react-hooks": "^2.2.1",
+    "typescript": "^3.6.3",
     "webpack": "4.39.2",
     "webpack-cli": "^3.3.7"
   }

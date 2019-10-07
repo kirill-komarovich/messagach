@@ -1,7 +1,7 @@
+import I18n from 'i18next';
 import React from 'react';
-import I18n from "i18next";
 
-const Root = () => (
+const Root: React.FunctionComponent<{}> = () => (
   <h1>{ I18n.t('welcome') }</h1>
 );
 

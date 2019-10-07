@@ -1,16 +1,21 @@
-import { HTTP_METHODS, HTTP_HEADERS } from '../constants';
+import { HTTP_HEADERS, HTTP_METHODS } from '../constants';
+
+interface Credentials {
+  email: string;
+  password: string;
+}
 
 const authentication = Object.freeze({
-  signIn: async ({ email, password }) => {
+  signIn: async ({ email, password }: Credentials) => {
     try {
       const response = await fetch('/api/v1/users/sign_in', {
-        method: HTTP_METHODS.post,
-        headers: new Headers({
-          ...HTTP_HEADERS.contentType.json,
-        }),
         body: JSON.stringify({
           user: { email, password },
         }),
+        headers: new Headers({
+          ...HTTP_HEADERS.contentType.json,
+        }),
+        method: HTTP_METHODS.post,
       });
 
       const data = await response.json();
