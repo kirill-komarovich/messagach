@@ -1,5 +1,5 @@
 import i18n from 'i18next';
-import translationsEn from './translations.en';
+import translationsEn from './translations.en.json';
 
 i18n.init({
   fallbackLng: 'en',

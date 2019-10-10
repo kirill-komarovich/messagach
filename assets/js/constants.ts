@@ -12,3 +12,9 @@ export const HTTP_HEADERS = Object.freeze({
     },
   },
 });
+
+export const HTTP_STATUSES = Object.freeze({
+  noContent: 204,
+  ok: 200,
+  unauthorized: 401,
+});
