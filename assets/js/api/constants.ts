@@ -16,3 +16,5 @@ export interface AuthenticationUser {
 export interface AuthenticationErrors {
   authentication: string;
 }
+
+export const API_ERROR_NAME = 'ApiError';

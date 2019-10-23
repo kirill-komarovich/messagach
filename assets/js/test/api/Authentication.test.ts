@@ -5,7 +5,7 @@ import {
   AuthenticationCredentials,
   AuthenticationErrors,
   AuthenticationUser,
-} from '../../api/types';
+} from '../../api/constants';
 import { HTTP_HEADERS, HTTP_METHODS } from '../../constants';
 import mockFetch from '../support/mockFetch';
 

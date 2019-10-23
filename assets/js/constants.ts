@@ -18,3 +18,7 @@ export const HTTP_STATUSES = Object.freeze({
   ok: 200,
   unauthorized: 401,
 });
+
+export const I18N_FORMAT_TYPES = Object.freeze({
+  capitalize: 'capitalize',
+});

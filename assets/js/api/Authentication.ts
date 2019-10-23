@@ -1,7 +1,7 @@
 import { HTTP_HEADERS, HTTP_METHODS } from '../constants';
 import Base from './Base';
 import paths from './paths';
-import { ApiResponse, AuthenticationCredentials, AuthenticationUser } from './types';
+import { ApiResponse, AuthenticationCredentials, AuthenticationUser } from './constants';
 
 class Authentication extends Base {
   public static signIn = async (

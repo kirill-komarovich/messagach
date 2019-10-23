@@ -1,5 +1,5 @@
 import ApiError from './ApiError';
-import { ApiResponse } from './types';
+import { ApiResponse } from './constants';
 
 export default class Base {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -6,7 +6,7 @@ interface ApiErrorParams {
   url: string;
 }
 
-const getException = ({ status, url, errors }: ApiErrorParams): ApiError => {
+const getException = ({ status, url, errors }: ApiErrorParams): ApiError<object> => {
   try {
     throw new ApiError(status, url, errors);
   } catch (exception) {
